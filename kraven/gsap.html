@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>K R A V T Scroll Reveal</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #111;
+      color: white;
+      font-family: sans-serif;
+    }
+
+    .container {
+      height: 120vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      overflow: hidden;
+    }
+
+    .letter {
+      font-size: 1.3rem;
+      opacity: 0;
+      /* transform: translateY(50px); */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="letter">K</div>
+    <div class="letter">R</div>
+    <div class="letter">A</div>
+    <div class="letter">V</div>
+    <div class="letter">T</div>
+  </div>
+
+  <!-- GSAP -->
+  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Timeline to reveal letters smoothly in scroll
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".container",
+        start: "top center",
+        end: "bottom center",
+        scrub: true,
+      }
+    });
+
+    tl.to(".letter", {
+      opacity: 1,
+      y: 0,
+      stagger: 0.2, // letter by letter
+      ease: "power2.out",
+      duration: 1
+    });
+  </script>
+
+</body>
+</html>
